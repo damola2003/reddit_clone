@@ -1,18 +1,20 @@
+// import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reddit_clone/auth/auth_controller.dart';
 
 class SignInButton extends ConsumerWidget {
-  const SignInButton({super.key});
+  const SignInButton({Key? key}) : super(key: key);
 
-  void signInWithGoogle(WidgetRef ref) {
-    ref.read(AuthControllerProvider).signInWithGoogle();
+  void signInWithGoogle(BuildContext context, WidgetRef ref) {
+    ref.read(authControllerProvider.notifier).signInWithGoogle(context);
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton.icon(
-      onPressed: () => signInWithGoogle(ref),
+      onPressed: () => signInWithGoogle(context, ref),
       icon: Image.asset(
         "lib/pictures/google.png",
         width: 25,
