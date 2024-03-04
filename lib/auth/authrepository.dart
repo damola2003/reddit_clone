@@ -66,7 +66,9 @@ class AuthRepository {
           awards: [],
         );
         await _users.doc(userCredential.user!.uid).set(userModel.toMap());
-      } else {}
+      } else {
+        userModel = await getUserData(userCredential.user!.uid).first;
+      }
 
       return right(userModel);
       //(userModel.uid)
